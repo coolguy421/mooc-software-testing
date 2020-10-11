@@ -22,8 +22,8 @@ public class ChocolateBagsTest {
 
     @ParameterizedTest(name = "small={0}, big={1}, total={2}, result={3}")
     @CsvSource({
-        "0,3,17,-1", "1,3,17,-1", "2,3,17,2", "3,3,17,2",
-        "0,3,12,-1", "1,3,12,-1", "2,3,12,2", "3,3,12,2"})
+            "0,3,17,-1", "1,3,17,-1", "2,3,17,2", "3,3,17,2",
+            "0,3,12,-1", "1,3,12,-1", "2,3,12,2", "3,3,12,2"})
     public void bigAndSmallBars(int small, int big, int total, int expectedResult) {
         int result = new ChocolateBags().calculate(small, big, total);
         Assertions.assertEquals(expectedResult, result);
@@ -32,6 +32,13 @@ public class ChocolateBagsTest {
     @ParameterizedTest(name = "small={0}, big={1}, total={2}, result={3}")
     @CsvSource({ "4,2,3,3", "3,2,3,3", "2,2,3,-1", "1,2,3,-1" })
     public void onlySmallBars(int small, int big, int total, int expectedResult) {
+        int result = new ChocolateBags().calculate(small, big, total);
+        Assertions.assertEquals(expectedResult, result);
+    }
+
+    @ParameterizedTest(name = "small={0}, big={1}, total={2}, result={3}")
+    @CsvSource({ "-1, 1, 5, -1, 1, 1, 5.5, -1"})
+    public void negativeValues(int small, int big, int total, int expectedResult) {
         int result = new ChocolateBags().calculate(small, big, total);
         Assertions.assertEquals(expectedResult, result);
     }
